@@ -1,0 +1,833 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="10.5">
+  <Nodes>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="366" y="402" width="468" height="192" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text><![CDATA[In this example, we assume we have a budget of  $25,200.  
+
+The assumption is based on the fact that the player salary meadian is $2,800.
+The meadian salary can be obtained easily by using Field Summary Tool.
+
+An average team should be able to afford 9 average players in MLB, thus
+we sppose we have a budget of: $2,800 * 9 = $25,200
+
+]]></Text>
+          <Font name="Segoe UI" size="9.75" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="21">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="54" y="54" width="828" height="60" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Optimization Tool</Text>
+          <Font name="Segoe UI" size="20.25" style="0" />
+          <TextColor name="White" />
+          <FillColor r="22" g="145" b="198" />
+          <Shape shape="0" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="426" y="54" width="456" height="60" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>The Optimization tool allows one to select values of a set of decision variables to maximize or minimize the value of a dependent objective function subject to a set of constraints.</Text>
+          <Font name="Segoe UI" size="9" style="0" />
+          <TextColor name="White" />
+          <FillColor r="111" g="111" b="111" />
+          <Shape shape="3" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="23">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="570" y="114" width="312" height="40" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>The data is scraped from: http://www.rotowire.com/daily/mlb/optimizer.htm</Text>
+          <Font name="Segoe UI" size="9.75" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="3" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="24">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="54" y="114" width="504" height="264" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text><![CDATA[The fantasy baseball daily lineup problem is as follows: given a fixed budget and 6 field positions to fill in, how should you draft players based on their projected points, salary and field postion?
+
+This can be understood as an easy optimization problem:
+1. We want to maximize the total projected points of all drafted players.
+2. We want to make sure total salary for the 9 players is under budget.
+3. We want to make sure each field postion is filled, i.e. 
+     - 1 Pitcher (P)
+     - 1 Base 1 player (1B)
+     - 1 Base 2 player (2B)
+     - 1 Short Stopper (SS)
+     - 1 Base 3 player (3B)
+     - 1 Catcher (C)
+     - 3 Out Fielders (OF)
+
+]]></Text>
+          <Font name="Segoe UI" size="9.75" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="3" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="29">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="54" y="618" width="780" height="60" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Build the optimization model with raw data</Text>
+          <Font name="Segoe UI" size="12" style="0" />
+          <TextColor name="White" />
+          <FillColor r="22" g="145" b="198" />
+          <Shape shape="0" />
+          <Justification Justification="0" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="32">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="786" y="678" width="382" height="261" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Explaination of Inputs</Caption>
+          <Style TextColor="#314c4a" FillColor="#c0c0c0" BorderColor="#314c4a" Transparency="25" Margin="10" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="31">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="796" y="707" width="362" height="55" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Anchor O: We use each player's name as decision variable. Since its value can only be 0 (won't be drafted) and 1 (will be drafted), the lower bound (lb) is 0, the upper bound (ub) is 1 and the "type" is "B" (Binary)</Text>
+              <Font name="Segoe UI" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="3" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="33">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="797" y="775" width="361" height="60" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text><![CDATA[Anchor A: The value of P, 1B, 2B, SS... are obtained from "Pos" column in the original table. If the player is a Pitcher, Column P is 1, other columns (1B, 2B, ....) are 0's. ]]></Text>
+              <Font name="Segoe UI" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="3" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="34">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="798" y="845" width="360" height="84" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Anchor B: It Specifies the directions (&lt;=, ==,&gt;=) and right-hand-side of constraint equations. The rows correspond to the columns in Input Anchor A. e.g Row Salary here corresponds to Column Salary in Anchor A. (Note, the "constraint" column is optional, as long as the order of the rows correpond to Anchor A)</Text>
+              <Font name="Segoe UI" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="3" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="54" y="402" width="307" height="194" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Basic Data Investigation</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="2">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="64.00002" y="479" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">.\daily_lineup.yxdb</File>
+              <FormatSpecificOptions />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>daily_lineup.yxdb</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Name" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+                <Field name="Team" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+                <Field name="Pos" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_String" />
+                <Field name="Bat" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_String" />
+                <Field name="Opp" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+                <Field name="Salary" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="Pts" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="Value" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="ML" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="O/U" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="Weather" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="3">
+          <GuiSettings>
+            <Position x="196" y="479" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Value name="Select Fields">Name=False,Team=False,Pos=True,Bat=False,Opp=False,Salary=True,Pts=False,Value=False,ML=False,O/U=False,Weather=False</Value>
+              <Value name="Sample Data">False</Value>
+              <Value name="Number">True</Value>
+              <Value name="NNumber">5000</Value>
+              <Value name="Percent">False</Value>
+              <Value name="NPercent">10</Value>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings Macro="Predictive Tools\Field_Summary_Report.yxmc" />
+        </Node>
+        <Node ToolID="4">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="292" y="431" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFileDataProfiling>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_ef1f8208270544b696efdcaef3669da1_.yxdb</TempFileDataProfiling>
+              <TempFile>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_4ee41e643220416180bfffd389d8f5b2_.yxdb</TempFile>
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Report</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="5">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="292" y="479" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFileDataProfiling>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_53f4929cac814fe7a6893840be782252_.yxdb</TempFileDataProfiling>
+              <TempFile>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_147d43414f6d41bfb7ccf61319d36cbb_.yxdb</TempFile>
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Report</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="6">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="292" y="527" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFileDataProfiling>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_423558354a1746cb8d4b6174259113e7_.yxdb</TempFileDataProfiling>
+              <TempFile>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_174ddbd993bb47baad345de68791a802_.yxdb</TempFile>
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Report</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="25">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="54" y="678" width="733" height="261" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Container 25</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="10" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="8">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="64.00004" y="707" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">.\daily_lineup.yxdb</File>
+              <FormatSpecificOptions />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>daily_lineup.yxdb</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Name" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+                <Field name="Team" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+                <Field name="Pos" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_String" />
+                <Field name="Bat" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_String" />
+                <Field name="Opp" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+                <Field name="Salary" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="Pts" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="Value" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="ML" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="O/U" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="Double" />
+                <Field name="Weather" size="254" source="File: C:\Users\kliu\Documents\Work\201604_Inspire\good_data.csv" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="9">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="160" y="707" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Name" selected="True" />
+                <SelectField field="Pos" selected="True" />
+                <SelectField field="Salary" selected="True" />
+                <SelectField field="Pts" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="10">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="268" y="707" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField field="P" type="Double" size="8" expression="if [Pos] == &quot;P&quot; then &#xA;	1&#xA;else&#xA;	0&#xA;endif" />
+                <FormulaField field="1B" type="Double" size="8" expression="if [Pos] == &quot;1B&quot; then &#xA;	1&#xA;else&#xA;	0&#xA;endif" />
+                <FormulaField field="2B" type="Double" size="8" expression="if [Pos] == &quot;2B&quot; then &#xA;	1&#xA;else&#xA;	0&#xA;endif" />
+                <FormulaField field="SS" type="Double" size="8" expression="if [Pos] == &quot;SS&quot; then &#xA;	1&#xA;else&#xA;	0&#xA;endif" />
+                <FormulaField field="3B" type="Double" size="8" expression="if [Pos] == &quot;3B&quot; then &#xA;	1&#xA;else&#xA;	0&#xA;endif" />
+                <FormulaField field="C" type="Double" size="8" expression="if [Pos] == &quot;C&quot; then &#xA;	1&#xA;else&#xA;	0&#xA;endif" />
+                <FormulaField field="OF" type="Double" size="8" expression="if [Pos] == &quot;OF&quot; then &#xA;	1&#xA;else&#xA;	0&#xA;endif" />
+                <FormulaField field="lb" type="Double" size="8" expression="0" />
+                <FormulaField field="ub" type="Double" size="8" expression="1" />
+                <FormulaField field="type" type="V_String" size="64" expression="&quot;B&quot;" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="2">
+              <Name />
+              <DefaultAnnotationText>P=if [Pos] == "P" then 
+	1
+else
+	0
+endif
+1B=if [Pos] == "1B" then 
+	1
+else
+	0
+endif
+2B=if [Pos] == "2B" then 
+	1
+else
+	0
+endif
+...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="364" y="707" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Name" selected="True" rename="variable" />
+                <SelectField field="Pos" selected="False" />
+                <SelectField field="Salary" selected="False" />
+                <SelectField field="Pts" selected="True" rename="coefficient" />
+                <SelectField field="P" selected="False" />
+                <SelectField field="1B" selected="False" />
+                <SelectField field="2B" selected="False" />
+                <SelectField field="SS" selected="False" />
+                <SelectField field="3B" selected="False" />
+                <SelectField field="C" selected="False" />
+                <SelectField field="OF" selected="False" />
+                <SelectField field="Draft" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="15">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="364" y="783" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Name" selected="True" rename="variable" />
+                <SelectField field="Pos" selected="False" />
+                <SelectField field="Pts" selected="False" />
+                <SelectField field="lb" selected="False" />
+                <SelectField field="ub" selected="False" />
+                <SelectField field="type" selected="False" />
+                <SelectField field="Draft" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="17">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="364" y="851" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="8" />
+              <Fields>
+                <Field name="constraint" />
+                <Field name="dir" />
+                <Field name="rhs" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>Salary</c>
+                  <c>&lt;=</c>
+                  <c>25200</c>
+                </r>
+                <r>
+                  <c>P</c>
+                  <c>==</c>
+                  <c>1</c>
+                </r>
+                <r>
+                  <c>1B</c>
+                  <c>==</c>
+                  <c>1</c>
+                </r>
+                <r>
+                  <c>2B</c>
+                  <c>==</c>
+                  <c>1</c>
+                </r>
+                <r>
+                  <c>SS</c>
+                  <c>==</c>
+                  <c>1</c>
+                </r>
+                <r>
+                  <c>3B</c>
+                  <c>==</c>
+                  <c>1</c>
+                </r>
+                <r>
+                  <c>C</c>
+                  <c>==</c>
+                  <c>1</c>
+                </r>
+                <r>
+                  <c>OF</c>
+                  <c>==</c>
+                  <c>3</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+        <Node ToolID="26">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="714" y="714" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_926c945a729a4252ad8185ab9849717a_.yxdb</TempFile>
+              <TempFileDataProfiling>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_04a142726ec640fe8f04365ad9e3f91f_.yxdb</TempFileDataProfiling>
+              <Layout>
+                <View1>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="27">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="718" y="791" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_12f5b13b88fe43c499994969c5cc4182_.yxdb</TempFile>
+              <TempFileDataProfiling>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_b54648a019f746499b569f6b939455ff_.yxdb</TempFileDataProfiling>
+              <Layout>
+                <View1>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="28">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="714" y="870" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_bb94069614df41cabdfd043097185335_.yxdb</TempFile>
+              <TempFileDataProfiling>C:\Users\kliu\AppData\Local\Temp\Engine_5936_49e7d946ca8f461c8d732a3cef45c090_\Engine_6840_8c3c7d3412724434a7574850c6da4162_.yxdb</TempFileDataProfiling>
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Report</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="30">
+          <GuiSettings Plugin="Optimization">
+            <Position x="534" y="791" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Value name="nameType" />
+              <Value name="nameUpper" />
+              <Value name="nameLower" />
+              <Value name="nameCoef" />
+              <Value name="nameVar" />
+              <Value name="displayFieldMapO">False</Value>
+              <Value name="constraintMode">varInRow</Value>
+              <Value name="filePath">
+              </Value>
+              <Value name="fileType">CPLEX_LP</Value>
+              <Value name="maximize">True</Value>
+              <Value name="solver">symphony</Value>
+              <Value name="problemType">MIP</Value>
+              <Value name="inputMode">matrix</Value>
+              <Value name="payload">{"fileType":"CPLEX_LP","filePath":"","solver":"symphony","inputMode":"matrix","maximize":true,"problemType":"MIP"}</Value>
+              <Value name="selectedTab">0</Value>
+              <Value name="fieldList">[]</Value>
+              <Value name="constraints">[]</Value>
+              <Value name="objective">
+              </Value>
+              <Value name="fieldNames">
+              </Value>
+              <Value name="activePage">landing</Value>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Matrix Input Mode</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings Macro="Optimization/Supporting_Macros/Optimization.yxmc" EngineDll="Macro" EngineDllEntryPoint="Optimization/Supporting_Macros/Optimization.yxmc" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Field Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Reports" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Interactive" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="30" Connection="InputO" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="15" Connection="Output" />
+      <Destination ToolID="30" Connection="InputA" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="17" Connection="Output" />
+      <Destination ToolID="30" Connection="InputB" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="30" Connection="Simple" />
+      <Destination ToolID="26" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="30" Connection="Data" />
+      <Destination ToolID="27" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="30" Connection="Interactive" />
+      <Destination ToolID="28" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>FantasyBaseballDailyLineup</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
