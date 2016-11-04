@@ -9,7 +9,11 @@ import os
 
 def main():
     destination = "C:\Users\kliu\Downloads"
-    copy_alteryx(dst = destination, install_type = "non_admin")
+    install_src = copy_alteryx(dst = destination, install_type = "admin")
+    install_dst = "C:\Users\kliu\Programs\Alteryx10.6"
+    log_path = destination + '\\' + 'alteryx_install.log'
+    install_alteryx(install_src, install_dst, log_path)
+     
 
 
 # run workflows in batch mode ----
@@ -37,7 +41,7 @@ def copy_alteryx(dst,
             and 'server'
     
     Returns:
-        0 if copy successes, 1 if copy fails.
+        Path of the installation exe file. 
     """
     install_dict = {'admin': 'AlteryxInstallx64',
                     'non_admin': 'AlteryxNonAdminInstall',
@@ -52,8 +56,29 @@ def copy_alteryx(dst,
     src = "\\".join([repo_path, latest, "Alteryx", install_file])
     
     cmd = "copy " + '"' + src + '" ' + dst
-    return os.system(cmd)
+    print os.system(cmd)
+    return dst + '\\' + install_file
 
+def quote(s):
+    return '"' + s + '"'
+
+def install_alteryx(src, dst = None, silent = True, log_file = None):
+    cmd = ['"' + src + '"']
+    if silent:
+        cmd.append('/s')
+    if dst:
+        cmd.append('TARGETDIR=' + quote(dst))
+    if log_file:
+        cmd.append('/l=' + quote(log_file))
+    
+    # cmd.append('REMOVE FALSE')
+    cmd = quote(' '.join(cmd))
+    os.system(cmd)
+
+    
+    
+    
+    
 if __name__ == '__main__':
     main()
 
