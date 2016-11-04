@@ -56,13 +56,28 @@ def copy_alteryx(dst,
     src = "\\".join([repo_path, latest, "Alteryx", install_file])
     
     cmd = "copy " + '"' + src + '" ' + dst
-    print os.system(cmd)
+    err_code = os.system(cmd)
+    if err_code:
+        print "Error: failed to copy the latest Alteryx build"
+        print "Copy command is: " + cmd
+        return
     return dst + '\\' + install_file
 
 def quote(s):
     return '"' + s + '"'
 
 def install_alteryx(src, dst = None, silent = True, log_file = None):
+    """ Install Alteryx
+    
+    Args:
+        src: string, the path of the installation exe file.
+        dst: (optional) string, where you want Alteryx to be installed.
+        silient: boolean, if you want to have conversation window during install
+        log_file: (optional) string, where you want to save the log file.
+    
+    Returns:
+        None
+    """
     cmd = ['"' + src + '"']
     if silent:
         cmd.append('/s')
@@ -71,11 +86,13 @@ def install_alteryx(src, dst = None, silent = True, log_file = None):
     if log_file:
         cmd.append('/l=' + quote(log_file))
     
-    # cmd.append('REMOVE FALSE')
     cmd = quote(' '.join(cmd))
-    os.system(cmd)
-
-    
+    err_code = os.system(cmd)
+    if err_code:
+        print "Error: failed to install Alteryx"
+        print "Installation command used is: " + cmd
+        if log_file:
+            print "See the log file: " + log_file + " for the details"  
     
     
     
