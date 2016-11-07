@@ -9,10 +9,12 @@ import os
 
 def main():
     destination = "C:\Users\kliu\Downloads"
-    install_src = copy_alteryx(dst = destination, install_type = "admin")
+    install_src = copy_alteryx(dst = destination)
     install_dst = "C:\Users\kliu\Programs\Alteryx10.6"
-    log_path = destination + '\\' + 'alteryx_install.log'
+    log_path = destination + '\\' + 'alteryx_install.log'   
+    pred_src = copy_predictive(dst = destination)
     install_alteryx(install_src, install_dst, log_path)
+    install_predictive(pred_src)
      
 
 
