@@ -126,8 +126,16 @@ def install_alteryx(src, dst = None, silent = True, log_file = None):
         print "Installation command used is: " + cmd
         if log_file:
             print "See the log file: " + log_file + " for the details"  
-    
-    
+ 
+def install_predictive(src, silent = True):
+    cmd = src
+    if silent:
+        cmd += " /s"
+    cmd = quote(cmd)
+    err_code = os.system(cmd)
+    if err_code:
+        print "Error: failed to install Alteryx"
+        print "Installation command used is: " + cmd
     
 if __name__ == '__main__':
     main()
