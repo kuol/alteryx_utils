@@ -24,7 +24,8 @@ def run_workflows(path = './workflows'):
         return_code = os.system(cmd)
         print f + ": " + str(return_code)
     
-    
+def quote(s):
+    return '"' + s + '"'  
     
 # copy & install Alteryx ----
 def copy_alteryx(dst,
@@ -55,7 +56,7 @@ def copy_alteryx(dst,
     install_file = [x for x in files if install_dict[install_type] in x][0]
     src = "\\".join([repo_path, latest, "Alteryx", install_file])
     
-    cmd = "copy " + '"' + src + '" ' + dst
+    cmd = "copy " + quote(src) + '" ' + dst
     err_code = os.system(cmd)
     if err_code:
         print "Error: failed to copy the latest Alteryx build"
@@ -63,8 +64,7 @@ def copy_alteryx(dst,
         return
     return dst + '\\' + install_file
 
-def quote(s):
-    return '"' + s + '"'
+
 
 def install_alteryx(src, dst = None, silent = True, log_file = None):
     """ Install Alteryx
@@ -78,7 +78,7 @@ def install_alteryx(src, dst = None, silent = True, log_file = None):
     Returns:
         None
     """
-    cmd = ['"' + src + '"']
+    cmd = [quote(src)]
     if silent:
         cmd.append('/s')
     if dst:
