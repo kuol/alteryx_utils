@@ -54,9 +54,9 @@ def copy_alteryx(dst,
     src = "\\".join([repo_path, latest, "Alteryx"])
     files = os.listdir(src)
     install_file = [x for x in files if install_dict[install_type] in x][0]
-    src = "\\".join([repo_path, latest, "Alteryx", install_file])
+    src += "\\" + install_file
     
-    cmd = "copy " + quote(src) + '" ' + dst
+    cmd = "copy " + quote(src) + ' ' + dst
     err_code = os.system(cmd)
     if err_code:
         print "Error: failed to copy the latest Alteryx build"
@@ -64,7 +64,40 @@ def copy_alteryx(dst,
         return
     return dst + '\\' + install_file
 
-
+def copy_predictive(dst,
+                 repo_path = "\\\\DEN-IT-FILE-07\\BuildRepo", 
+                 branch = "Predictive_Dev",
+                 install_type = "admin"):
+    """Copy Predictive installation file to user appointed directory
+    
+    Args:
+        dst: A string of the directory path you want to copy the file to.
+        repo_path: A string of the Alteryx BuildRepo path.
+        branch: A string of branch name, default to "Predictive_Dev"
+        install_type: A string of 4 options: 'admin', 'non_admin', 'gallery' 
+            and 'server'
+    
+    Returns:
+        Path of the installation exe file. 
+    """
+    install_dict = {'admin': 'RInstaller',
+                    'non_admin': 'RNonAdminInstall',
+                    'rre': 'RREInstaller'}
+    dirs = os.listdir(repo_path)
+    all_versions =  [x for x in dirs if branch in x]
+    latest = all_versions[-1]
+    src = "\\".join([repo_path, latest, "R"])
+    files = os.listdir(src)
+    install_file = [x for x in files if install_dict[install_type] in x][0]
+    src += "\\" + install_file 
+    
+    cmd = "copy " + quote(src) + ' ' + dst
+    err_code = os.system(cmd)
+    if err_code:
+        print "Error: failed to copy the latest Alteryx build"
+        print "Copy command is: " + cmd
+        return
+    return dst + '\\' + install_file
 
 def install_alteryx(src, dst = None, silent = True, log_file = None):
     """ Install Alteryx
