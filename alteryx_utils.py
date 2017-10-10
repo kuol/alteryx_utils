@@ -6,11 +6,12 @@ This is a temporary script file.
 """
 
 import os
+from subprocess import Popen, PIPE
 
 def main():
-    destination = "C:\Users\kliu\Downloads"
+    destination = "C:\\Users\\kliu\\Downloads"
     install_src = copy_alteryx(dst = destination)
-    install_dst = "C:\Users\kliu\Programs\Alteryx10.6"
+    install_dst = "C:\\Program Files\\Alteryx\\bin\\"
     log_path = destination + '\\' + 'alteryx_install.log'   
     pred_src = copy_predictive(dst = destination)
     install_alteryx(install_src, install_dst, log_path)
@@ -20,11 +21,20 @@ def main():
 
 # run workflows in batch mode ----
 def run_workflows(path = './workflows'):
-    files = os.listdir(path)
+    alteryx_bin = "C:\\Program Files\\Alteryx\\bin\\AlteryxEngineCmd.exe"
+    files = [os.path.join(path,x) for x in os.listdir(path) if x.endswith(".yxmd")]
     for f in files:
-        cmd = 'AlteryxEngineCmd.exe ' + f    
-        return_code = os.system(cmd)
-        print f + ": " + str(return_code)
+        cmd = quote(alteryx_bin) + ' ' + f    
+        proc = Popen(cmd, stdout=PIPE, stderr=PIPE)
+        output, errors = proc.communicate()
+        print("Output:")
+        print("="*50)
+        print(output.decode('utf-8', errors="ignore"))
+        print("Errors:")
+        print("="*50)
+        print(errors.decode('utf-8', errors="ignore"))
+        #return_code = os.system(cmd)
+        #print(f + ": " + str(return_code))
     
 def quote(s):
     return '"' + s + '"'  
@@ -32,7 +42,7 @@ def quote(s):
 # copy & install Alteryx ----
 def copy_alteryx(dst,
                  repo_path = "\\\\DEN-IT-FILE-07\\BuildRepo", 
-                 branch = "Predictive_Dev",
+                 branch = "EmCap", #"Predictive_Dev",
                  install_type = "admin"):
     """Copy Alteryx installation file to user appointed directory
     
@@ -61,8 +71,8 @@ def copy_alteryx(dst,
     cmd = "copy " + quote(src) + ' ' + dst
     err_code = os.system(cmd)
     if err_code:
-        print "Error: failed to copy the latest Alteryx build"
-        print "Copy command is: " + cmd
+        print("Error: failed to copy the latest Alteryx build")
+        print("Copy command is: " + cmd)
         return
     return dst + '\\' + install_file
 
@@ -96,8 +106,8 @@ def copy_predictive(dst,
     cmd = "copy " + quote(src) + ' ' + dst
     err_code = os.system(cmd)
     if err_code:
-        print "Error: failed to copy the latest Alteryx build"
-        print "Copy command is: " + cmd
+        print("Error: failed to copy the latest Alteryx build")
+        print("Copy command is: " + cmd)
         return
     return dst + '\\' + install_file
 
@@ -124,10 +134,10 @@ def install_alteryx(src, dst = None, silent = True, log_file = None):
     cmd = quote(' '.join(cmd))
     err_code = os.system(cmd)
     if err_code:
-        print "Error: failed to install Alteryx"
-        print "Installation command used is: " + cmd
+        print("Error: failed to install Alteryx")
+        print("Installation command used is: " + cmd)
         if log_file:
-            print "See the log file: " + log_file + " for the details"  
+            print("See the log file: " + log_file + " for the details")  
  
 def install_predictive(src, silent = True):
     cmd = src
@@ -136,8 +146,8 @@ def install_predictive(src, silent = True):
     cmd = quote(cmd)
     err_code = os.system(cmd)
     if err_code:
-        print "Error: failed to install Alteryx"
-        print "Installation command used is: " + cmd
+        print("Error: failed to install Alteryx")
+        print("Installation command used is: " + cmd)
     
 if __name__ == '__main__':
     main()
