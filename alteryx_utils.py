@@ -13,6 +13,10 @@ from subprocess import Popen, PIPE
 def main():     
     branch, install_pred, copyTo, test_dir = get_args()
     
+    if test_dir:
+        run_workflows(test_path = test_dir)
+        return
+    
     install_src = copy_alteryx(dst = copyTo, branch = branch)
     install_dst = "C:\\Program Files\\Alteryx"
     log_path = os.path.join(copyTo, 'alteryx_install.log')  
@@ -22,8 +26,7 @@ def main():
         pred_src = copy_predictive(dst = copyTo, branch = branch)
         install_predictive(pred_src)
     
-    if test_dir:
-        run_workflows(test_dir)
+
      
 def get_args():
     download_path = os.path.join(str(Path.home()), "Downloads")
@@ -46,9 +49,14 @@ def get_args():
 
 
 # run workflows in batch mode ----
-def run_workflows(alteryx_bin = "C:\\Program Files\\Alteryx\\bin\\AlteryxEngineCmd.exe",
-                  path = './workflows'):  
-    files = [os.path.join(path,x) for x in os.listdir(path) if x.endswith(".yxmd")]
+def run_workflows(test_path = None,
+                  alteryx_bin = "C:\\Program Files\\Alteryx\\bin\\AlteryxEngineCmd.exe"):  
+    if test_path is None:
+        return("Exit: testing directory is not given")
+    if not Path(alteryx_bin).exists():
+        return("Exit: Alteryx executable " + alteryx_bin + " does not exist!" )
+    
+    files = [os.path.join(test_path,x) for x in os.listdir(test_path) if x.endswith(".yxmd")]
     for f in files:
         cmd = quote(alteryx_bin) + ' ' + f    
         proc = Popen(cmd, stdout=PIPE, stderr=PIPE)
