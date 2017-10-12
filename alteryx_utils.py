@@ -5,23 +5,49 @@ Spyder Editor
 This is a temporary script file.
 """
 
-import os
+import os, argparse
+from pathlib import Path
 from subprocess import Popen, PIPE
 
-def main():
-    destination = "C:\\Users\\kliu\\Downloads"
-    install_src = copy_alteryx(dst = destination)
-    install_dst = "C:\\Program Files\\Alteryx\\bin\\"
-    log_path = destination + '\\' + 'alteryx_install.log'   
-    pred_src = copy_predictive(dst = destination)
+
+def main():     
+    branch, install_pred, copyTo, test_dir = get_args()
+    
+    install_src = copy_alteryx(dst = copyTo, branch = branch)
+    install_dst = "C:\\Program Files\\Alteryx"
+    log_path = os.path.join(copyTo, 'alteryx_install.log')  
+    
     install_alteryx(install_src, install_dst, log_path)
-    install_predictive(pred_src)
+    if install_pred:
+        pred_src = copy_predictive(dst = copyTo, branch = branch)
+        install_predictive(pred_src)
+    
+    if test_dir:
+        run_workflows(test_dir)
      
+def get_args():
+    download_path = os.path.join(str(Path.home()), "Downloads")
+    
+    parser = argparse.ArgumentParser(description = "Install nightly build and test(if requested)")
+    parser.add_argument('-b', '--branch',
+                        help = 'branch name in BuildRepo, EmCap by default', 
+                        default = 'EmCap')
+    parser.add_argument('-p', '--predictive', 
+                        help = 'if install predictive tools, false by default', 
+                        action = 'store_true',
+                        default = False)
+    parser.add_argument('-c', '--copyTo',
+                        help = 'where to copy the installers to your local machine',
+                        default = download_path)
+    parser.add_argument('-t', '--testDir',
+                        help = 'directory where testing workflows are in')
+    args = parser.parse_args()
+    return(args.branch, args.predictive, args.copyTo, args.testDir)
 
 
 # run workflows in batch mode ----
-def run_workflows(path = './workflows'):
-    alteryx_bin = "C:\\Program Files\\Alteryx\\bin\\AlteryxEngineCmd.exe"
+def run_workflows(alteryx_bin = "C:\\Program Files\\Alteryx\\bin\\AlteryxEngineCmd.exe",
+                  path = './workflows'):  
     files = [os.path.join(path,x) for x in os.listdir(path) if x.endswith(".yxmd")]
     for f in files:
         cmd = quote(alteryx_bin) + ' ' + f    
@@ -137,7 +163,9 @@ def install_alteryx(src, dst = None, silent = True, log_file = None):
         print("Error: failed to install Alteryx")
         print("Installation command used is: " + cmd)
         if log_file:
-            print("See the log file: " + log_file + " for the details")  
+            print("See the log file: " + log_file + " for the details")
+    else:
+        print("Installation succeeded!")
  
 def install_predictive(src, silent = True):
     cmd = src
